@@ -26,12 +26,9 @@ async def test_send():
     query = "(NSW recorded [\d,]+ new)|(PUBLIC HEALTH ALERT)"
     for tweet in tweets:
         if (match = re.search(query, tweet.text)):
-            await bot.get_channel(887896693473935413).send("COVID Update: https://twitter.com/twitter/statuses/" + tweet.id)
+            await bot.get_channel(int(getenv('COVID_CHANNEL_ID'))).send("https://twitter.com/twitter/statuses/" + tweet.id)
 
     last_checked = tweets[-1].id
-    
-
-
 
 bot.run(getenv('DISCORD_TOKEN'))
 
